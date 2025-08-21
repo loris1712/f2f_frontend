@@ -12,11 +12,11 @@ export default function ColorFlashScreen() {
 
   // Definisce le sequenze di colori in base al voto
   const sequences: Record<number, string[]> = {
-    1: ["red", "green", "blue"],
-    2: ["red", "blue", "green"],
-    3: ["green", "red", "blue"],
-    4: ["green", "blue", "red"],
-    5: ["blue", "red", "green"],
+    1: ["red", "white", "blue"],
+    2: ["red", "white", "green"],
+    3: ["red", "blue", "white"],
+    4: ["red", "blue", "green"],
+    5: ["red", "green", "white"],
   };
 
   const [colorIndex, setColorIndex] = useState(0);

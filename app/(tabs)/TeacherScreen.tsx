@@ -1,17 +1,46 @@
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Camera, useCameraDevice, useCameraPermission } from 'react-native-vision-camera';
 
-import { Text } from 'react-native';
+export default function ProfessorScreen() {
+  const device = useCameraDevice('back');
+  const { hasPermission, requestPermission } = useCameraPermission();
+  const [permissionRequested, setPermissionRequested] = useState(false);
 
-export default function ProfessorScreen(){
-    return <Text>Professor Screen</Text>
+  useEffect(() => {
+    async function checkPermission() {
+      if (!hasPermission && !permissionRequested) {
+        const status = await requestPermission();
+        console.log('Camera permission status:', status);
+        setPermissionRequested(true);
+      }
+    }
+    checkPermission();
+  }, [hasPermission, permissionRequested, requestPermission]);
 
-    /*const device = useCameraDevice('back')
-
-    if (device == null) return <NoCameraErrorView />
+  if (!hasPermission) {
     return (
-    <Camera
-      style={StyleSheet.absoluteFill}
-      device={device}
-      isActive={true}
-    />
-  )*/
+      <View style={styles.center}>
+        <Text>No camera permission</Text>
+      </View>
+    );
+  }
+
+  if (device == null) {
+    return (
+      <View style={styles.center}>
+        <Text>No camera device found</Text>
+      </View>
+    );
+  }
+
+  return <Camera style={StyleSheet.absoluteFill} device={device} isActive={true} />;
 }
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
