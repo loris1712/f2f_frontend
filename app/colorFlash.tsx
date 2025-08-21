@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function ColorFlashScreen() {
-  const delay = 500; //ms
+  const delay = 300; //ms
   const router = useRouter();
   const params = useLocalSearchParams();
 
