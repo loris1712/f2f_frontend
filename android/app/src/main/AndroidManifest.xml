@@ -27,6 +27,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="f2ffrontend"/>
+        <data android:scheme="exp+f2ffrontend"/>
       </intent-filter>
     </activity>
   </application>
